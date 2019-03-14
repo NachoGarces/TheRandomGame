@@ -1,27 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-dark navcolor shadow">
+  <% if current_player %>
+    <a class="navbar-brand" href="<%= root_path %>"><%= current_player.avatar %></a>
+    <a class="navbar-brand" href="<%= root_path %>"><%= current_player.name %></a>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <i class="fab fa-xbox fa-3x"></i>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <i class="fab fa-playstation fa-3x"></i>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <i class="fab fa-nintendo-switch fa-3x"></i>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
+        <i class="fab fa-steam fa-3x"></i>
+      </li> 
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      <% if current_player %>
+        <span class="navbar-text text-center pr-5">
+          <h5>Puntos <br><%= current_player.points %></h5>
+        </span>
+        <span class="navbar-text text-center pr-3">
+          <h5>Rags <br><%= current_player.rags %></h5>
+        </span>
+        <span class="navbar-text">
+          <a class="nav-link btn btn-outline-dark" href="<%= destroy_player_session_path %>">  Cerrar Sesion<span class="sr-only">(current)</span></a>
+      <% else %>
+          <a class="nav-link btn btn-outline-dark" href="<%= new_player_registration_path %>">  Iniciar Sesion<span class="sr-only">(current)</span></a>
+      <% end %>
+    </span>
   </div>
 </nav>

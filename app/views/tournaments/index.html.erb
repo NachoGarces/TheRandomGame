@@ -1,18 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class='text middle'>
+  <span class='hidden'>T</span>
+  <span class='hidden'>h</span>
+  <span class='hidden'>e</span>
+  <span>R</span>
+  <span>a</span>
+  <span class='hidden'>n</span>
+  <span class='hidden'>d</span>
+  <span class='hidden'>o</span>
+  <span class='hidden'>m</span>
+  <span>g</span>
+  <span class='hidden'>a</span>
+  <span class='hidden'>m</span>
+  <span class='hidden'>e</span>
+  <span>s</span>
+</div>
 
-<h1>Tournaments</h1>
+  <div class='float-right'>
+    <%= link_to 'Crear Torneo', new_tournament_path, class:'btn btn-outline-success' %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Player</th>
-      <th>Description</th>
-      <th>Bet amounts</th>
-      <th>Winner</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<table class='col-md-12 px-mt-1'>
   <tbody>
     <% @tournaments.each do |tournament| %>
       <tr>
@@ -29,5 +36,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Tournament', new_tournament_path %>

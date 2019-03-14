@@ -13,3 +13,63 @@
  *= require_tree .
  *= require_self
  */
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato';
+  background: url(background.jpg);
+  background-size: 270px;
+  /* background: #101623; */
+  color: #95afc0;
+}
+a:visited{color: #95afc0}
+.navcolor{background: #101623; color: #95afc0;}
+
+/* Texts */
+.box{
+  color: #95afc0;
+  width: 450px;
+  padding: 20px;
+  position: absolute;
+  background: #191919;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.box h1{
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Rags */
+.middle{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+.text{
+  color: #95afc0;
+  font-size: 70px;
+  font-family: 'Lato';
+  font-weight: 900;
+  cursor: pointer;
+}
+.hidden{
+  max-width: 0;
+  opacity: 0;
+  transition: 0.5s ease-in;
+}
+.text:hover .hidden{
+  opacity: 1;
+  max-width: 1em;
+}
+
+/* iconos */
+.fab{padding-right: 8px;}
+.fa-xbox{color: #407d11;}
+.fa-playstation{color: #0e95d8;}
+.fa-nintendo-switch{color: #e84a19;}
+.fa-steam{color: #367096;}

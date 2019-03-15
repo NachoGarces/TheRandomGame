@@ -12,13 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :player_id %>
-    <%= form.text_field :player_id %>
+    <h4> <%= current_player.name %> <%= current_player.last_name %> </h4>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description %>
   </div>
 
   <div class="field">

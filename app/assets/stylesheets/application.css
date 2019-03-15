@@ -38,6 +38,7 @@ a:visited{color: #95afc0}
   text-align: center;
   border-radius: 20px;
   margin-bottom: 20px;
+  opacity: .9;
 }
 .box h1{
   text-transform: uppercase;

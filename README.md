@@ -1,10 +1,18 @@
-# Resumen del proyecto
+# The Random Games
 
-* La aplicacion web consiste en la organizacion de torneos en distintos videojuegos basado en publicaciones, en ellas se mostrara el nombre del videojuego, en que plataforma esta aceptado ingresar, la cantidad de jugadores que pueden entrar al torneo (depende de cada juego), el costo de ingreso al torneo (Moneda interna llamada RAGS que podra ser comprada con paypal) y una descripcion donde se informara la hora, dia y datos extras sobre el torneo. Luego de terminar los jugadores deben ingresar al ganador para entregarle el monto total recaudado de RAGS, en caso de disputa existiran moderadores que determinaran al ganador.
+* Resumen del proyecto
 
-Link Trello: https://trello.com/b/dlRsRhRW/therandomgame
+The ramdom games es la aplicacion web que permite unir a la comunidad de jugadores en un competitivo sano y limpio en el cual pueden obtener monedas (Rags) al ganar torneos para luego cangearlos por Keys de distintos juegos.
+ 
+ 
+# Link Trello:
+https://trello.com/b/dlRsRhRW/therandomgames
 
-Link Draw: https://drive.google.com/file/d/13eZMhK3PxqDO9PRdP5IpEPqu06eLBK9y/view?usp=sharing
+# Link Draw:
+https://drive.google.com/file/d/13eZMhK3PxqDO9PRdP5IpEPqu06eLBK9y/view?usp=sharing
+
+# Link Drive:
+https://docs.google.com/document/d/1qFygH7soAO1wsu4w1q3b4xXf_OVc_8tK0cjImT6m5Pc/edit?usp=sharing
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

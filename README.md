@@ -11,8 +11,8 @@ https://trello.com/b/dlRsRhRW/therandomgames
 # Link Draw:
 https://drive.google.com/file/d/13eZMhK3PxqDO9PRdP5IpEPqu06eLBK9y/view?usp=sharing
 
-# Link Drive:
-https://docs.google.com/document/d/1qFygH7soAO1wsu4w1q3b4xXf_OVc_8tK0cjImT6m5Pc/edit?usp=sharing
+# Link project description:
+https://drive.google.com/drive/folders/1LMatBS-fK7LMLvpmL-s1cVz2N1LMAFJb?usp=sharing
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

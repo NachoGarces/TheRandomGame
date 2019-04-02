@@ -11,18 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <h4> <%= current_player.name %> <%= current_player.last_name %> </h4>
+  <div class="field md-form">
+    <%= form.label :id %><br />
+    <%= form.text_field :id %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="md-form">
+    <%= form.label :descripcion %><br />
+    <%= form.text_area :description, class:"form-control md-textarea" %>
   </div>
 
-  <div class="field">
-    <%= form.label :bet_amounts %>
-    <%= form.number_field :bet_amounts %>
+  <div class="md-form">
+    <%= form.label :bet_amounts %><br />
+    <%= form.number_field :bet_amounts, min:'0', max:'100' %>
+    <span class='thumb'><span class='value'></span></span>
   </div>
 
   <div class="actions">

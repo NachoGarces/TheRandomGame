@@ -1,0 +1,32 @@
+<%= form_with(model: nickname, local: true) do |form| %>
+  <% if nickname.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(nickname.errors.count, "error") %> prohibited this nickname from being saved:</h2>
+
+      <ul>
+      <% nickname.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :player_id %>
+    <%= form.text_field :player_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nick %>
+    <%= form.text_field :nick %>
+  </div>
+
+  <div class="field">
+    <%= form.label :site_id %>
+    <%= form.select :site_id, sites: Site.pluck(:namesite, :id) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

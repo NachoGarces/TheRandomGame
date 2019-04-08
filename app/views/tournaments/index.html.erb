@@ -23,7 +23,7 @@
   <tbody>
     <% @tournaments.each do |tournament| %>
       <tr>
-        <td><%= tournament.player %></td>
+        <td><%= tournament.player.name %> <%= tournament.player.last_name %></td>
         <td><%= tournament.description %></td>
         <td><%= tournament.bet_amounts %></td>
         <td><%= tournament.winner %></td>

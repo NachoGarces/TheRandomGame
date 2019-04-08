@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_230012) do
+ActiveRecord::Schema.define(version: 2019_04_07_074322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2019_02_28_230012) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["player_id"], name: "index_acounts_on_player_id"
+  end
+
+  create_table "nicknames", force: :cascade do |t|
+    t.string "nick"
+    t.bigint "player_id"
+    t.bigint "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_nicknames_on_player_id"
+    t.index ["site_id"], name: "index_nicknames_on_site_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -40,6 +50,12 @@ ActiveRecord::Schema.define(version: 2019_02_28_230012) do
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
   end
 
+  create_table "sites", force: :cascade do |t|
+    t.string "namesite"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tournaments", force: :cascade do |t|
     t.bigint "player_id"
     t.string "description"
@@ -51,5 +67,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_230012) do
   end
 
   add_foreign_key "acounts", "players"
+  add_foreign_key "nicknames", "players"
+  add_foreign_key "nicknames", "sites"
   add_foreign_key "tournaments", "players"
 end

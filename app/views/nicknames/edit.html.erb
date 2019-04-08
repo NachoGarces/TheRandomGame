@@ -1,0 +1,14 @@
+<div class='row mt-12 text-left'>
+  <div class='offset-md-3 col-md-6 mb-4'>
+    <div class='card bg-red'>
+      <div class='card-body'>
+        <h1>Editar Nickname</h1>
+
+        <%= render 'form', nickname: @nickname %>
+
+        <%= link_to 'Show', @nickname %> |
+        <%= link_to 'Back', nicknames_path %>      
+      </div>
+    </div>
+  </div>
+</div>

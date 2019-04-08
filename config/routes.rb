@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :nicknames
+  resources :sites
   root 'tournaments#index'
   resources :tournaments
   devise_for :players, controllers: {

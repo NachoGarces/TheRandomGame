@@ -1,0 +1,22 @@
+<%= form_with(model: typetournament, local: true) do |form| %>
+  <% if typetournament.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(typetournament.errors.count, "error") %> prohibited this typetournament from being saved:</h2>
+
+      <ul>
+      <% typetournament.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :typetournamentname %>
+    <%= form.text_field :typetournamentname %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

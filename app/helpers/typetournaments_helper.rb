@@ -1,0 +1,2 @@
+module TypetournamentsHelper
+end

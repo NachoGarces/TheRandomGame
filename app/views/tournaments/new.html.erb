@@ -1,7 +1,13 @@
-<div class='box'>
-  <h1>Nuevo Torneo</h1>
+<div class='row mt-12 text-left'>
+  <div class='offset-md-3 col-md-6 mb-4'>
+    <div class='card bg-red'>
+      <div class='card-body'>
+        <h1>Nuevo Torneo</h1>
 
-  <%= render 'form', tournament: @tournament %>
+        <%= render 'form', tournament: @tournament %>
 
-  <%= link_to 'Back', tournaments_path %>
+        <%= link_to 'Back', tournaments_path %>
+      </div>
+    </div>
+  </div>
 </div>

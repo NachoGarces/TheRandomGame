@@ -24,6 +24,9 @@
     <% @tournaments.each do |tournament| %>
       <tr>
         <td><%= tournament.player.name %> <%= tournament.player.last_name %></td>
+        <td><%= tournament.typetournament_id %></td>
+        <td><%= tournament.maxteam %></td>
+        <td><%= tournament.maxplayers %></td>
         <td><%= tournament.description %></td>
         <td><%= tournament.bet_amounts %></td>
         <td><%= tournament.winner %></td>

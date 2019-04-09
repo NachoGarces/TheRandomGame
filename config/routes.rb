@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :typetournaments
   resources :nicknames
   resources :sites
   root 'tournaments#index'

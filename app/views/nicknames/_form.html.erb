@@ -11,10 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :player_id %>
-    <%= form.text_field :player_id %>
-  </div>
+  <%= form.hidden_field :player_id, value: current_player.id %>
 
   <div class="field">
     <%= form.label :nick %>

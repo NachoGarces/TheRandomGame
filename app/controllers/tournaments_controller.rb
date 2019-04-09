@@ -30,6 +30,8 @@ class TournamentsController < ApplicationController
       if @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
         format.json { render :show, status: :created, location: @tournament }
+        current_player.rags -= @tournament.bet_amounts
+        current_player.save
       else
         format.html { render :new }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
@@ -58,6 +60,8 @@ class TournamentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tournaments_url, notice: 'Tournament was successfully destroyed.' }
       format.json { head :no_content }
+      current_player.rags += @tournament.bet_amounts
+      current_player.save
     end
   end
 
@@ -69,6 +73,6 @@ class TournamentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tournament_params
-      params.require(:tournament).permit(:player_id, :description, :bet_amounts, :winner)
+      params.require(:tournament).permit(:player_id, :typetournament_id, :description, :bet_amounts, :winner, :maxteam, :maxplayers)
     end
 end

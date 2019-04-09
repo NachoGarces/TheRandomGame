@@ -11,9 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field md-form">
-    <%= form.label :player_id %><br />
-    <%= form.text_field :player_id %>
+  <%= form.hidden_field :player_id, value: current_player.id, type:'hidden' %>
+
+  <div class="md-form">
+    <%= form.label :typetournament_id %><br />
+    <%= form.select :typetournament_id, typetournament: Typetournament.pluck(:typetournamentname, :id) %>
+  </div>
+
+  <div class="md-form">
+    <%= form.label :maxteam %><br />
+    <%= form.number_field :maxteam, min:'2', class:"form-control md-textarea" %>
+  </div>
+
+  <div class="md-form">
+    <%= form.label :maxplayers %><br />
+    <%= form.number_field :maxplayers, min:'1', class:"form-control md-textarea" %>
   </div>
 
   <div class="md-form">
@@ -23,7 +35,7 @@
 
   <div class="md-form">
     <%= form.label :bet_amounts %><br />
-    <%= form.number_field :bet_amounts, min:'0', max:'100' %>
+    <%= form.number_field :bet_amounts, min:'10', max: current_player.rags, class:"form-control md-textarea" %>
     <span class='thumb'><span class='value'></span></span>
   </div>
 

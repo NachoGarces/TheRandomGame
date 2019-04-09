@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_074322) do
+ActiveRecord::Schema.define(version: 2019_04_09_192722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(version: 2019_04_07_074322) do
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
   end
 
+  create_table "players_tournaments", id: false, force: :cascade do |t|
+    t.bigint "player_id", null: false
+    t.bigint "tournament_id", null: false
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string "namesite"
     t.datetime "created_at", null: false
@@ -63,11 +68,22 @@ ActiveRecord::Schema.define(version: 2019_04_07_074322) do
     t.string "winner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "typetournament_id"
+    t.integer "maxteam"
+    t.integer "maxplayers"
     t.index ["player_id"], name: "index_tournaments_on_player_id"
+    t.index ["typetournament_id"], name: "index_tournaments_on_typetournament_id"
+  end
+
+  create_table "typetournaments", force: :cascade do |t|
+    t.string "typetournamentname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "acounts", "players"
   add_foreign_key "nicknames", "players"
   add_foreign_key "nicknames", "sites"
   add_foreign_key "tournaments", "players"
+  add_foreign_key "tournaments", "typetournaments"
 end

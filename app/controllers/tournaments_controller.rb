@@ -27,7 +27,7 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.new(tournament_params)
 
     respond_to do |format|
-      if @tournament.save
+      if @tournament.save && @tournament.player_id == current_player.id
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
         format.json { render :show, status: :created, location: @tournament }
         current_player.rags -= @tournament.bet_amounts

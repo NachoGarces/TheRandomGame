@@ -10,17 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_192722) do
+ActiveRecord::Schema.define(version: 2019_04_12_041343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "acounts", force: :cascade do |t|
-    t.string "nicks"
-    t.bigint "player_id"
+  create_table "games", force: :cascade do |t|
+    t.string "namegame"
+    t.integer "maxplayers"
+    t.string "description"
+    t.integer "year"
+    t.string "developer"
+    t.string "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_acounts_on_player_id"
+  end
+
+  create_table "games_platforms", id: false, force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "platform_id", null: false
   end
 
   create_table "nicknames", force: :cascade do |t|
@@ -31,6 +39,13 @@ ActiveRecord::Schema.define(version: 2019_04_09_192722) do
     t.datetime "updated_at", null: false
     t.index ["player_id"], name: "index_nicknames_on_player_id"
     t.index ["site_id"], name: "index_nicknames_on_site_id"
+  end
+
+  create_table "platforms", force: :cascade do |t|
+    t.string "nameplatform"
+    t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "players", force: :cascade do |t|
@@ -71,6 +86,8 @@ ActiveRecord::Schema.define(version: 2019_04_09_192722) do
     t.bigint "typetournament_id"
     t.integer "maxteam"
     t.integer "maxplayers"
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["player_id"], name: "index_tournaments_on_player_id"
     t.index ["typetournament_id"], name: "index_tournaments_on_typetournament_id"
   end
@@ -81,9 +98,9 @@ ActiveRecord::Schema.define(version: 2019_04_09_192722) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "acounts", "players"
   add_foreign_key "nicknames", "players"
   add_foreign_key "nicknames", "sites"
+  add_foreign_key "tournaments", "games"
   add_foreign_key "tournaments", "players"
   add_foreign_key "tournaments", "typetournaments"
 end

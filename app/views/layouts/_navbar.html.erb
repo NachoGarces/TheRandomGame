@@ -1,43 +1,35 @@
-<nav class="navbar navbar-expand-lg navcolor shadow">
-  <% if current_player %>
-    <a class="navbar-brand" href="<%= root_path %>"><%#= current_player.avatar %></a>
-    <a class="navbar-brand" href="<%= root_path %>"><%= current_player.name %></a>
-  <% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <i class="fab fa-xbox fa-3x xbox"></i>
-      </li>
-      <li class="nav-item">
-        <i class="fab fa-playstation fa-3x psn"></i>
-      </li>
-      <li class="nav-item">
-        <i class="fab fa-nintendo-switch fa-3x switch"></i>
-      </li>
-      <li class="nav-item">
-        <i class="fas fa-desktop fa-3x pc"></i>
-      </li>
-      <li class="nav-item">
-        <i class="fas fa-mobile fa-3x mobile"></i>
-      </li> 
-    </ul>
+<nav>
+  <div class="nav-wrapper">
+    <% if current_player %>
+      <a class="brand-logo" href="<%= root_path %>"><%#= current_player.avatar %></a>
+      <a class="brand-logo" href="<%= root_path %>"><%= current_player.name %></a>
+    <% else %>
+      <a class="waves-effect waves-light btn" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a>
+      <a class="waves-effect waves-light btn" href='<%= new_player_registration_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Registrate</a>
+    <% end %>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
       <% if current_player %>
-        <span class="navbar-text text-center pr-5">
-          <h5>Puntos: <%= current_player.points %></h5>
-        </span>
-        <span class="navbar-text text-center pr-5">
-          <h5>Rags: <%= current_player.rags %></h5>
-        </span>
-        <span class="navbar-text">
-          <a class="nav-link btn purple-gradient btn-rounded waves-effect waves-light" href="<%= destroy_player_session_path(current_player) %>" data-method="DELETE">  Cerrar Sesion<span class="sr-only">(current)</span></a>
+        <li class="nav-item">Puntos: <%= current_player.points %></li>
+        <li class="nav-item">Rags: <%= current_player.rags %></li>
+        <a class="waves-effect waves-teal btn-flat" href="<%= destroy_player_session_path(current_player) %>" data-method="DELETE">  Cerrar Sesion<span class="sr-only">(current)</span></a>
       <% else %>
-        <a class="nav-link btn blue-gradient btn-rounded waves-effect waves-light" href="<%= new_player_session_path %>">Iniciar sesion<span class="sr-only">(current)</span></a>
-        <a class="nav-link btn aqua-gradient btn-rounded waves-effect waves-light" href="<%= new_player_registration_path %>">Registrate<span class="sr-only">(current)</span></a>
+        <a class="waves-effect waves-light btn" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a>
+        <a class="waves-effect waves-light btn" href='<%= new_player_registration_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Registrate</a>
       <% end %>
-    </span>
+    </ul>
   </div>
 </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <% if current_player %>
+      <li class="nav-item">Puntos: <%= current_player.points %></li>
+      <li class="nav-item">Rags: <%= current_player.rags %></li>
+      <a class="waves-effect waves-teal btn-flat" href="<%= destroy_player_session_path(current_player) %>" data-method="DELETE">  Cerrar Sesion<span class="sr-only">(current)</span></a>
+    <% end %>
+  </ul>
+<script>
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+</script>

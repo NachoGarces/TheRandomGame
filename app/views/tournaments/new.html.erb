@@ -1,12 +1,12 @@
 <div class='row mt-12 text-left'>
   <div class='offset-md-3 col-md-6 mb-4'>
     <div class='card bg-red'>
-      <div class='card-body'>
+      <div class='card-body center'>
         <h1>Nuevo Torneo</h1>
 
         <%= render 'form', tournament: @tournament %>
 
-        <%= link_to 'Back', tournaments_path %>
+        <%= link_to 'Back', tournaments_path, class:'waves-effect waves-teal btn-flat' %>
       </div>
     </div>
   </div>

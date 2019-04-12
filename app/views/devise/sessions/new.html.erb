@@ -2,31 +2,31 @@
   <div class='col-md-6 mb-4'>
     <div class='card bg-red'>
       <div class='card-body'>
-        <div class='text-center'>
+        <div class='center'>
           <%= image_tag 'TheRandomGames', width:'150px' %>
         </div>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field md-form">
+          <div class="input-field col s12">
             <i class='fas fa-envelope prefix grey-text'></i>
-            <%= f.label :email %><br />
+            <%= f.label :email %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
           </div>
 
-          <div class="field md-form">
+          <div class="input-field col s12">
             <i class='fas fa-lock prefix grey-text'></i>
-            <%= f.label :contraseña %><br />
+            <%= f.label :contraseña %>
             <%= f.password_field :password, autocomplete: "current-password" %>
           </div>
 
           <% if devise_mapping.rememberable? -%>
-            <div class="custom-control custom-checkbox input-group mt-4">
-              <%= f.check_box :remember_me, class:'custom-control-input', id:'defaultUnchecked' %>
-              <%= f.label :volvere!,  class:'custom-control-label pl-3 pt-2', for:'defaultUnchecked' %>
+            <div class="input-fiels col s12">
+              <%= f.check_box :remember_me %>
+              <%= f.label :volvere!  %>
             </div>
           <% end -%>
 
-          <div class="actions text-center">
+          <div class="actions center">
             <%= f.submit "Log in", class:'btn btn-dark-green waves-effect waves-light' %>
           </div>
         <% end %>

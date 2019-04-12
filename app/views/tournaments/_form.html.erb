@@ -11,35 +11,48 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :player_id, value: current_player.id, type:'hidden' %>
+  <%= form.hidden_field :player_id, value: current_player.id%>
 
-  <div class="md-form">
-    <%= form.label :typetournament_id %><br />
+  <div class="input-field col s12">
+    <%= form.select :game_id, game: Game.pluck(:namegame, :id) %>
+  </div>
+
+  <div class="input-field col s12">
     <%= form.select :typetournament_id, typetournament: Typetournament.pluck(:typetournamentname, :id) %>
   </div>
 
-  <div class="md-form">
-    <%= form.label :maxteam %><br />
-    <%= form.number_field :maxteam, min:'2', class:"form-control md-textarea" %>
+  <div class="input-field col s12">
+    <%= form.label :maximo_de_teams %>
+    <%= form.number_field :maxteam, min:'2' %>
+    <span class="helper-text" data-error="wrong" data-success="right">Recuerda que tambien debes considerarte a ti en el total</span>
   </div>
 
-  <div class="md-form">
-    <%= form.label :maxplayers %><br />
-    <%= form.number_field :maxplayers, min:'1', class:"form-control md-textarea" %>
+  <div class="input-field col s12">
+    <%= form.label :maximo_de_players %>
+    <%= form.number_field :maxplayers, min:'1' %>
   </div>
 
-  <div class="md-form">
-    <%= form.label :descripcion %><br />
-    <%= form.text_area :description, class:"form-control md-textarea" %>
+  <div class="input-field col s12">
+    <%= form.label :descripcion %>
+    <%= form.text_area :description, id:'textarea1', class:'materialize-textarea' %>
   </div>
 
-  <div class="md-form">
-    <%= form.label :bet_amounts %><br />
+  <div class="input-field col s12">
+    <%= form.label :monto_de_apuesta %>
     <%= form.number_field :bet_amounts, min:'10', max: current_player.rags, class:"form-control md-textarea" %>
     <span class='thumb'><span class='value'></span></span>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <button class="btn waves-effect waves-light" type="submit" name="action"><%= form.submit %>
+    <i class="material-icons right fa-spin">games</i>
+  </button>
+        
+
+
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  namegame: MyString
+  maxplayers: 1
+  description: MyString
+  year: 1
+  developer: MyString
+  logo: MyString
+
+two:
+  namegame: MyString
+  maxplayers: 1
+  description: MyString
+  year: 1
+  developer: MyString
+  logo: MyString

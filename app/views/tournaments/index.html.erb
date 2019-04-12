@@ -15,26 +15,28 @@
   <span>s</span>
 </div>
 
-  <div class='float-right'>
-    <%= link_to 'Crear Torneo', new_tournament_path, class:'btn aqua-gradient btn-rounded waves-effect waves-light' %>
+  <div class='right'>
+    <%= link_to 'Crear Torneo', new_tournament_path, class:'waves-effect waves-light btn' %>
   </div>
 
-<table class='col-md-12 px-mt-1'>
+<table class='table'>
   <tbody>
-    <% @tournaments.each do |tournament| %>
-      <tr>
-        <td><%= tournament.player.name %> <%= tournament.player.last_name %></td>
-        <td><%= tournament.typetournament_id %></td>
-        <td><%= tournament.maxteam %></td>
-        <td><%= tournament.maxplayers %></td>
-        <td><%= tournament.description %></td>
-        <td><%= tournament.bet_amounts %></td>
-        <td><%= tournament.winner %></td>
-        <td><%= link_to 'Show', tournament %></td>
-        <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
-        <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <div class='row'>
+      <% @tournaments.each do |tournament| %>
+        <div class='col s12 m5'>
+          <tr class='card'>
+            <td><%= tournament.player.name %> <%= tournament.player.last_name %></td>
+            <td><%= tournament.typetournament.typetournamentname %></td>
+            <td><%= tournament.maxteam %></td>
+            <td><%= tournament.maxplayers %></td>
+            <td><%= tournament.description %></td>
+            <td><%= tournament.bet_amounts %></td>
+            <td><%= tournament.winner %></td>
+            <td class='card-action'><%= link_to 'Show', tournament %></td>
+          </tr>
+        <% end %>
+      </div>
+    </div>
   </tbody>
 </table>
 

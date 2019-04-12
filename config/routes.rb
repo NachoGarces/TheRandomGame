@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :platforms
+  resources :games
   resources :typetournaments
   resources :nicknames
   resources :sites

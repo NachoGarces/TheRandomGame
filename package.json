@@ -2,6 +2,11 @@
   "name": "therandomgame",
   "private": true,
   "dependencies": {
-    "jquery": "^3.3.1"
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "material-kit": "^2.0.4"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1"
   }
 }

@@ -1,5 +1,5 @@
 <nav>
-  <div class="nav-wrapper">
+  <div class="nav-wrapper blue-grey darken-2">
     <% if current_player %>
       <a class="brand-logo" href="<%= root_path %>"><%#= current_player.avatar %></a>
       <a class="brand-logo" href="<%= root_path %>"><%= current_player.name %></a>
@@ -12,7 +12,7 @@
       <% if current_player %>
         <li class="nav-item">Puntos: <%= current_player.points %></li>
         <li class="nav-item">Rags: <%= current_player.rags %></li>
-        <a class="waves-effect waves-teal btn-flat" href="<%= destroy_player_session_path(current_player) %>" data-method="DELETE">  Cerrar Sesion<span class="sr-only">(current)</span></a>
+        <%= link_to 'Cerrar sesion', destroy_player_session_path, :method => :delete, class:"waves-effect waves-teal btn-flat" %>
       <% else %>
         <a class="waves-effect waves-light btn" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a>
         <a class="waves-effect waves-light btn" href='<%= new_player_registration_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Registrate</a>
@@ -21,11 +21,11 @@
   </div>
 </nav>
 
-  <ul class="sidenav" id="mobile-demo">
+  <ul class="sidenav blue-grey darken-2" id="mobile-demo">
     <% if current_player %>
       <li class="nav-item">Puntos: <%= current_player.points %></li>
       <li class="nav-item">Rags: <%= current_player.rags %></li>
-      <a class="waves-effect waves-teal btn-flat" href="<%= destroy_player_session_path(current_player) %>" data-method="DELETE">  Cerrar Sesion<span class="sr-only">(current)</span></a>
+      <%= link_to 'Cerrar sesion', destroy_player_session_path, :method => :delete, class:"waves-effect waves-teal btn-flat" %>
     <% end %>
   </ul>
 <script>

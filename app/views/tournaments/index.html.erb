@@ -1,43 +1,45 @@
-<div class='text middle'>
-  <span class='hidden'>T</span>
-  <span class='hidden'>h</span>
-  <span class='hidden'>e</span>
-  <span>R</span>
-  <span>a</span>
-  <span class='hidden'>n</span>
-  <span class='hidden'>d</span>
-  <span class='hidden'>o</span>
-  <span class='hidden'>m</span>
-  <span>g</span>
-  <span class='hidden'>a</span>
-  <span class='hidden'>m</span>
-  <span class='hidden'>e</span>
-  <span>s</span>
+<div class="parallax-container">
+  <div class="parallax">
+    <img src="https://rocketleague.media.zestyio.com/rl_cross-play_asset_rl_1920.309bf22bd29c2e411e9dd8eb07575bb1.jpg">
+  </div>
 </div>
 
-  <div class='right'>
-    <%= link_to 'Crear Torneo', new_tournament_path, class:'waves-effect waves-light btn' %>
+  <div class='row'>
+    <%= link_to 'CREA UN NUEVO TORNEO!', new_tournament_path, class:'btn blue-grey lighten-1 pulse offset-s2 col s8' %>
   </div>
 
-<table class='table'>
-  <tbody>
-    <div class='row'>
-      <% @tournaments.each do |tournament| %>
-        <div class='col s12 m5'>
-          <tr class='card'>
-            <td><%= tournament.player.name %> <%= tournament.player.last_name %></td>
-            <td><%= tournament.typetournament.typetournamentname %></td>
-            <td><%= tournament.maxteam %></td>
-            <td><%= tournament.maxplayers %></td>
-            <td><%= tournament.description %></td>
-            <td><%= tournament.bet_amounts %></td>
-            <td><%= tournament.winner %></td>
-            <td class='card-action'><%= link_to 'Show', tournament %></td>
-          </tr>
-        <% end %>
+<div class='row'>
+  <% @tournaments.each do |tournament| %>
+    <div class="col s12 m6 l4">
+      <div class="card large center blue-grey darken-1">
+        <div class="card-image">
+          <img src="<%= tournament.game.logo %>">
+          <span class="card-title col s12 center">
+            <h4><%= tournament.player.name %> <%= tournament.player.last_name %> 
+              <br /> <%= tournament.player.points %>
+            </h4>
+          </span>
+        </div>
+        <div class="card-content">
+          <h5 class='col s6'>
+            <%= image_tag 'Rags.png', width:'50px' %>
+            <%= tournament.bet_amounts %>
+            <strong>Rags</strong>
+          </h5>
+          <h5 class='col s6'>Duelo tipo<br/> <%= tournament.typetournament.typetournamentname %></h5>
+          <h5 class='col s12'>Se juega <br/><%= tournament.date %></h5>
+          <h5><%= tournament.maxteam %>T/<%= tournament.maxplayers %>P</h5>
+        </div>
+        <div class="card-action">
+          <%= link_to 'Revisa y combate', tournament, class:'btn blue-grey lighten-1' %>
+        </div>
       </div>
     </div>
-  </tbody>
-</table>
+  <% end %>
+</div>
 
-<br>
+<script>
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+</script>

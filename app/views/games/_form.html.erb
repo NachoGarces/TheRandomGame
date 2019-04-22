@@ -11,37 +11,48 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="input-field col s12">
     <%= form.label :namegame %>
     <%= form.text_field :namegame %>
   </div>
 
-  <div class="field">
+  <div class="input-field col m12">
+    <%= form.label :plataformas %>
+    <%= form.select :platform_id, options_from_collection_for_select(Platform.all, :id, :nameplatform), {}, {multiple: true} %>
+  </div>
+
+  <div class="input-field col s12">
     <%= form.label :maxplayers %>
     <%= form.number_field :maxplayers %>
   </div>
 
-  <div class="field">
+  <div class="input-field col s12">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description, id:'textarea1', class:'materialize-textarea' %>
   </div>
 
-  <div class="field">
+  <div class="input-field col s12">
     <%= form.label :year %>
     <%= form.number_field :year %>
   </div>
 
-  <div class="field">
+  <div class="input-field col s12">
     <%= form.label :developer %>
     <%= form.text_field :developer %>
   </div>
 
-  <div class="field">
+  <div class="input-field col s12">
     <%= form.label :logo %>
     <%= form.text_field :logo %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <button class="btn waves-effect waves-light" type="submit" name="action"><%= form.submit %>
+    <i class="material-icons right fa-spin">games</i>
+  </button>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>

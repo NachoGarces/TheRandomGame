@@ -28,7 +28,7 @@ class NicknamesController < ApplicationController
 
     respond_to do |format|
       if @nickname.save
-        format.html { redirect_to @nickname, notice: 'Nickname was successfully created.' }
+        format.html { redirect_to @nickname, notice: 'Nuevo Nickname... Más juego.' }
         format.json { render :show, status: :created, location: @nickname }
       else
         format.html { render :new }

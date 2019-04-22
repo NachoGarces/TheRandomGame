@@ -5,10 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Namegame</th>
-      <th>Maxplayers</th>
-      <th>Description</th>
-      <th>Year</th>
+      <th>Juego</th>
+      <th>Plataforma</th>
+      <th>Max Players</th>
+      <th>Descripcion</th>
+      <th>Año</th>
       <th>Developer</th>
       <th>Logo</th>
       <th colspan="3"></th>
@@ -19,6 +20,7 @@
     <% @games.each do |game| %>
       <tr>
         <td><%= game.namegame %></td>
+        <td><%= game.platform%></td>
         <td><%= game.maxplayers %></td>
         <td><%= game.description %></td>
         <td><%= game.year %></td>

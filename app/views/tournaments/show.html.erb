@@ -1,24 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Player:</strong>
-  <%= @tournament.player.name %>
-</p>
+<div class='row'>
+  <div class='col s12 m4 13 grey darken-3' id='site-layout-example-left'>
+    <h5 class='flat-text-header'></h5>
+  </div>
+  <div class='col s12 m8 19 grey darken-1 center z-depth-3'>
+    <h5><%= @tournament.game.namegame %></h5>
 
-<p>
-  <strong>Description:</strong>
-  <%= @tournament.description %>
-</p>
+    <h4>
+      <%= @tournament.player.name %> <%= @tournament.player.last_name %> 
+      <br /> <%= @tournament.player.points %>
+    </h4>
 
-<p>
-  <strong>Bet amounts:</strong>
-  <%= @tournament.bet_amounts %>
-</p>
+    <h5 class='col s6'>
+      <%= image_tag 'Rags.png', width:'50px' %>
+      <%= @tournament.bet_amounts %>
+      <strong>Rags</strong>
+    </h5>
 
-<p>
-  <strong>Winner:</strong>
-  <%= @tournament.winner %>
-</p>
+    <h5 class='col s6'>Duelo tipo<br/> <%= @tournament.typetournament.typetournamentname %></h5>
 
-<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
-<%= link_to 'Back', tournaments_path %>
+    <h5 class='col s12'>Se juega <br/><%= @tournament.date %></h5>
+
+    <h3 class='col s12'>
+      <strong>Winner winner chicken dinner</strong>
+      <%= @tournament.winner %>
+    </h3>
+
+    <a class="waves-effect waves-light btn col s12">Unirse al torneo</a><br/>
+    <%= link_to 'Editar', edit_tournament_path(@tournament), class:'col s6 waves-effect waves-teal btn-flat' %>
+    <%= link_to 'Atras', tournaments_path, class:'col s6 waves-effect waves-teal btn-flat' %>
+  </div>
+</div>

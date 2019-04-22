@@ -17,17 +17,14 @@
     <%= favicon_link_tag asset_path('Ragsito.png') %>
   </head>
 
-  <body>
+  <body class='blue-grey darken-2'>
     <% unless controller_name == "registrations" || controller_name == "sessions" %>
       <%= render 'layouts/navbar' %>
     <% end %>
 
-     
-    <div class='container'>
-      <p class='notice'><%= notice %></p>
-      <p class='alert'><%= alert %></p>
-      <%= yield %>
-    </div>
+    <p class='notice'><%= notice %></p>
+    <p class='alert'><%= alert %></p>
+    <%= yield %>
     <!-- Compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>

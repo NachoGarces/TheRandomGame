@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_12_041343) do
+ActiveRecord::Schema.define(version: 2019_04_15_074412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2019_04_12_041343) do
     t.string "avatar"
     t.integer "rags", default: 0
     t.integer "points", default: 0
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
   end
@@ -87,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_041343) do
     t.integer "maxteam"
     t.integer "maxplayers"
     t.bigint "game_id"
+    t.datetime "date"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["player_id"], name: "index_tournaments_on_player_id"
     t.index ["typetournament_id"], name: "index_tournaments_on_typetournament_id"

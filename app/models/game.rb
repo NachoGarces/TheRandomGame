@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
   has_many :tournaments
-  has_and_belongs_to_many :platforms
+  has_many :games_platforms
+  has_many :platforms, through: :games_platforms
+  accepts_nested_attributes_for :games_platforms
 end

@@ -1,15 +1,34 @@
-<p id="notice"><%= notice %></p>
-
 <div class='row'>
-  <div class='col s12 m4 13 grey darken-3' id='site-layout-example-left'>
-    <h5 class='flat-text-header'></h5>
+  <div class='col s12 m4 13 blue-grey darken-1' id='site-layout-example-left'>
+    <div id='comments' class='col s12'>
+      <% @tournament.comments.pluck(:content).each do |c| %>
+        <div class="card-panel blue-grey lighten-1">
+          <div class="row valign-wrapper">
+            <div class="col s10">
+              <span class="black-text">
+                <%= c %>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= form_with model: Comment.new, url: [@tournament, @comment] do |f| %>
+      <%= f.label :comentarios %>
+      <%= f.text_field :content %>
+      <button class="btn waves-effect blue-grey lighten-1" type="submit" name="action">
+        <%= f.submit :enviar %>
+        <i class="material-icons right">send</i>
+      </button>
+    <% end %>
   </div>
-  <div class='col s12 m8 19 grey darken-1 center z-depth-3'>
+
+  <div class='col s12 m8 19  blue-grey darken-1 center z-depth-3'>
     <h5><%= @tournament.game.namegame %></h5>
 
     <h4>
       <%= @tournament.player.name %> <%= @tournament.player.last_name %> 
-      <br /> <%= @tournament.player.points %>
+      <br> <%= @tournament.player.points %>
     </h4>
 
     <h5 class='col s6'>
@@ -27,8 +46,28 @@
       <%= @tournament.winner %>
     </h3>
 
-    <a class="waves-effect waves-light btn col s12">Unirse al torneo</a><br/>
+    <%= link_to 'Unirse al torneo', players_tournaments_path, method: :post, class:"waves-effect btn col s12 blue-grey lighten-1" %>
+    <br>
+
     <%= link_to 'Editar', edit_tournament_path(@tournament), class:'col s6 waves-effect waves-teal btn-flat' %>
+
     <%= link_to 'Atras', tournaments_path, class:'col s6 waves-effect waves-teal btn-flat' %>
+
   </div>
 </div>
+
+<script>
+  $("[name=commit]").click(function(v){
+    v.preventDefault();
+    var new_content = $("[name='comment[content]']").val();
+    $.ajax({
+      url: '<%= tournament_comments_path(@tournament) %>',
+      type: 'POST',
+      dataType: 'script',
+      data: {comment: {content: new_content, tournament_id: <%= @tournament.id %>}}
+    })
+    .done(function(){ console.log("Success"); })
+    .fail(function(){ console.log("Error"); })
+    .always(function(){ console.log("Completado"); })
+  });
+</script>

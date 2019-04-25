@@ -1,4 +1,4 @@
-<%= form_with(model: tournament, local: true) do |form| %>
+<%= form_with(model: tournament, local: true, method: :post) do |form| %>
   <% if tournament.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
@@ -10,8 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <%= form.hidden_field :player_id, value: current_player.id%>
 
   <div class="input-field col s12">
     <%= form.select :game_id, game: Game.pluck(:namegame, :id) %>

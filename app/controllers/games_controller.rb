@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :gameplatforms, only: [:update, :create]
+  # before_action :gameplatforms, only: [:update, :create]
 
   # GET /games
   # GET /games.json

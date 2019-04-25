@@ -5,7 +5,8 @@ class Player < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_and_belongs_to_many :tournaments
+  has_many :players_tournaments
+  has_many :tournaments, through: :players_tournaments
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |player|

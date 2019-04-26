@@ -1,20 +1,14 @@
 <div class='row'>
   <div class='col s12 m4 13 blue-grey darken-1' id='site-layout-example-left'>
-    <div id='comments' class='col s12'>
+    <div class='col s12'>
       <% @tournament.comments.pluck(:content).each do |c| %>
-        <div class="card-panel blue-grey lighten-1">
-          <div class="row valign-wrapper">
-            <div class="col s10">
-              <span class="black-text">
-                <%= c %>
-              </span>
-            </div>
-          </div>
-        </div>
+          <h6><%= c %></h6> <hr>
       <% end %>
+      <div id='comments'>
+      </div>
     </div>
-    <%= form_with model: Comment.new, url: [@tournament, @comment] do |f| %>
-      <%= f.label :comentarios %>
+    <%= form_with model: [@tournament, @comment], method: :post do |f| %>
+      <%= f.hidden_field :tournament_id, value: @tournament.id %>
       <%= f.text_field :content %>
       <button class="btn waves-effect blue-grey lighten-1" type="submit" name="action">
         <%= f.submit :enviar %>
@@ -46,7 +40,7 @@
       <%= @tournament.winner %>
     </h3>
 
-    <%= link_to 'Unirse al torneo', players_tournaments_path, method: :post, class:"waves-effect btn col s12 blue-grey lighten-1" %>
+    <%= link_to 'Unirse al torneo', tournament_players_tournaments_path(@tournament), method: :post, class:"waves-effect btn col s12 blue-grey lighten-1" %>
     <br>
 
     <%= link_to 'Editar', edit_tournament_path(@tournament), class:'col s6 waves-effect waves-teal btn-flat' %>
@@ -56,18 +50,3 @@
   </div>
 </div>
 
-<script>
-  $("[name=commit]").click(function(v){
-    v.preventDefault();
-    var new_content = $("[name='comment[content]']").val();
-    $.ajax({
-      url: '<%= tournament_comments_path(@tournament) %>',
-      type: 'POST',
-      dataType: 'script',
-      data: {comment: {content: new_content, tournament_id: <%= @tournament.id %>}}
-    })
-    .done(function(){ console.log("Success"); })
-    .fail(function(){ console.log("Error"); })
-    .always(function(){ console.log("Completado"); })
-  });
-</script>

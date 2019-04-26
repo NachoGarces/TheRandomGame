@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :players_tournaments, only: [:new, :create]
   resources :platforms
   resources :games
   resources :typetournaments
@@ -7,7 +6,8 @@ Rails.application.routes.draw do
   resources :sites
   root 'tournaments#index'
   resources :tournaments do
-    resources :comments, only: [:create]
+    resources :players_tournaments, only: [:create]
+    resources :comments, only: [:create, :new]
   end
   devise_for :players, controllers: {
     sessions: 'players/sessions',

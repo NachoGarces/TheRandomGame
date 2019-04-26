@@ -4,12 +4,13 @@ class Tournament < ApplicationRecord
 
   has_many :players_tournaments
   has_many :players, through: :players_tournaments
-  accepts_nested_attributes_for :players_tournaments
-  
+
   belongs_to :game
   has_many :comments
 
   validate :amounts_rags_to_bet
+
+  
 
   private
   def amounts_rags_to_bet

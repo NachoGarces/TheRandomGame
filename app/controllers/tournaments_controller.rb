@@ -10,6 +10,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1
   # GET /tournaments/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /tournaments/new
@@ -66,10 +67,6 @@ class TournamentsController < ApplicationController
   end
 
   private
-    def playertournaments
-      pt = tournament_params
-      return pt.merge(players_tournaments_attributes: current_player.id)
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_tournament
       @tournament = Tournament.find(params[:id])

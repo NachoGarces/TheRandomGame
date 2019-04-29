@@ -11,11 +11,28 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1.json
   def show
     @comment = Comment.new
+    # @players_tournaments_arr = PlayersTournament.where(tournament_id: @tournament.id).pluck(:tournament_id, :player_id)
+    @players_tournaments = PlayersTournament.where(tournament_id: @tournament.id).all
+    @plc = @players_tournaments.size
+    @maxs = @tournament.maxplayers * @tournament.maxteam
+    # @maxs += 1 if @tournament.typetournament_id == 3
+    players_total = []
+    @plc.times do |l|
+      players_total << l
+    end
+    teams_randoms = []
+    @plc.times do
+      select_random = players_total.sample
+      teams_randoms << select_random
+      players_total.delete(select_random)
+    end
+    @teams_randoms = teams_randoms
   end
 
   # GET /tournaments/new
   def new
     @tournament = Tournament.new
+    @tournament.players_tournaments.build
   end
 
   # GET /tournaments/1/edit
@@ -26,6 +43,7 @@ class TournamentsController < ApplicationController
   # POST /tournaments.json
   def create
     @tournament = Tournament.new(tournament_params)
+    @tournament.player_id = current_player.id
 
     respond_to do |format|
       if @tournament.save && @tournament.player_id == current_player.id
@@ -74,6 +92,15 @@ class TournamentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tournament_params
-      params.require(:tournament).permit(:player_id, :typetournament_id, :game_id, :description, :bet_amounts, :winner, :maxteam, :maxplayers, :date)
+      params.require(:tournament).permit(:player_id, 
+                                         :typetournament_id, 
+                                         :game_id, 
+                                         :description, 
+                                         :bet_amounts, 
+                                         :winner, 
+                                         :maxteam, 
+                                         :maxplayers, 
+                                         :date,
+                                         players_tournaments_attributes: [:id, :player_id, :tournament_id])
     end
 end

@@ -5,6 +5,7 @@ class Player < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+  has_many :tournaments
   has_many :players_tournaments
   has_many :tournaments, through: :players_tournaments
 

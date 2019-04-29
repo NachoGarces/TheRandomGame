@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+  <%= form.fields_for :players_tournaments do |pl_id| %>
+    <%= pl_id.hidden_field :player_id, value: current_player.id %>
+  <% end %>
+
   <div class="input-field col s12">
     <%= form.select :game_id, game: Game.pluck(:namegame, :id) %>
   </div>

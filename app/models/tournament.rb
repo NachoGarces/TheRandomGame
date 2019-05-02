@@ -7,7 +7,7 @@ class Tournament < ApplicationRecord
   accepts_nested_attributes_for :players_tournaments
 
   belongs_to :game
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 
   validate :amounts_rags_to_bet
 

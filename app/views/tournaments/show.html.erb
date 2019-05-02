@@ -18,7 +18,10 @@
   <% if @tournament.typetournament_id == 3 %>
     <div class='col s12 center'>
       <h5> Moderador </h5>
-      
+      <% if @players_tournaments[@orderplayers[@max]] %>
+        <%= @players_tournaments[@orderplayers[p]].player.name %> 
+        <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+      <% end %>
     </div>
   <% end %>
 

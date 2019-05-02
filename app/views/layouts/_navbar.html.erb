@@ -11,8 +11,8 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if current_player %>
-          <li class="nav-item">Puntos: <%= current_player.points %></li>
-          <li class="nav-item">Rags: <%= current_player.rags %></li>
+          <li>Puntos: <%= current_player.points %></li>
+          <li><%= link_to "Rags: #{current_player.rags}", billings_path %></li>
           <%= link_to 'Cerrar sesion', destroy_player_session_path, :method => :delete, class:"waves-effect waves-teal btn-flat" %>
         <% else %>
           <a class="waves-effect waves-light btn" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a>
@@ -25,8 +25,8 @@
 
   <ul class="sidenav blue-grey darken-2" id="mobile-demo">
     <% if current_player %>
-      <li class="nav-item">Puntos: <%= current_player.points %></li>
-      <li class="nav-item">Rags: <%= current_player.rags %></li>
+      <li>Puntos: <%= current_player.points %></li>
+      <li><%= link_to "Rags: #{current_player.rags}", billings_path %></li>
       <%= link_to 'Cerrar sesion', destroy_player_session_path, :method => :delete, class:"waves-effect waves-teal btn-flat" %>
     <% end %>
   </ul>

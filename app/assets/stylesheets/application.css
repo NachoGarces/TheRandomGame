@@ -23,6 +23,8 @@
 a:visited{color: white}
 .bg-red{background-color: #383838}
 
+.mp-5{padding: 5px}
+
 /* Rags */
 .middle{
   position: absolute;

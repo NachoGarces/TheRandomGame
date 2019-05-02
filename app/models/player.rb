@@ -8,6 +8,7 @@ class Player < ApplicationRecord
   has_many :tournaments
   has_many :players_tournaments
   has_many :tournaments, through: :players_tournaments
+  has_many :billings
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |player|

@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :typetournaments
   resources :nicknames
   resources :sites
+  resources :billings, only: [:index] do
+    collection do
+      get 'pre_pay'
+    end
+  end
   root 'tournaments#index'
   resources :tournaments do
     resources :players_tournaments, only: [:create]

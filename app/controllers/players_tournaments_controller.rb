@@ -3,7 +3,7 @@ class PlayersTournamentsController < ApplicationController
   def create
     @tournament = Tournament.find(params[:tournament_id])
     @players_tournament = PlayersTournament.new(player_id: current_player.id, tournament_id: @tournament.id)
-    @players_tournaments = PlayersTournament.find_by(tournament_id: @tournament.id).pluck(:tournament_id, :player_id)
+    @players_tournaments = PlayersTournament.where(tournament_id: @tournament.id).pluck(:tournament_id, :player_id)
     @maxs = @tournament.maxplayers * @tournament.maxteam
     # @maxs += 1 if @tournament.typetournament_id == 3
     @plc = @players_tournaments.size

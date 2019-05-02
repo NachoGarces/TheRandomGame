@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_061306) do
+ActiveRecord::Schema.define(version: 2019_05_02_043844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "billings", force: :cascade do |t|
+    t.string "code"
+    t.string "payment_method"
+    t.decimal "amount", precision: 10, scale: 2
+    t.string "currency"
+    t.bigint "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_billings_on_player_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -98,6 +109,7 @@ ActiveRecord::Schema.define(version: 2019_04_22_061306) do
     t.integer "maxplayers"
     t.bigint "game_id"
     t.datetime "date"
+    t.integer "orderplayers", default: [], array: true
     t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["player_id"], name: "index_tournaments_on_player_id"
     t.index ["typetournament_id"], name: "index_tournaments_on_typetournament_id"
@@ -109,6 +121,7 @@ ActiveRecord::Schema.define(version: 2019_04_22_061306) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "billings", "players"
   add_foreign_key "comments", "tournaments"
   add_foreign_key "nicknames", "players"
   add_foreign_key "nicknames", "sites"

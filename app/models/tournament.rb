@@ -1,8 +1,8 @@
 class Tournament < ApplicationRecord
   belongs_to :player
-  belongs_to :typetournament
+  belongs_to :typetournament, :dependent => :destroy
 
-  has_many :players_tournaments
+  has_many :players_tournaments, :dependent => :destroy
   has_many :players, through: :players_tournaments
   accepts_nested_attributes_for :players_tournaments
 
@@ -10,8 +10,6 @@ class Tournament < ApplicationRecord
   has_many :comments
 
   validate :amounts_rags_to_bet
-
-  
 
   private
   def amounts_rags_to_bet

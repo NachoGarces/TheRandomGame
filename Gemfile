@@ -69,6 +69,7 @@ group :production do
   # Use postgresql as the database for Active Record
   gem 'pg', '>= 0.18', '< 2.0'
   gem 'rails_12factor'
+  gem 'webpacker', require: false
 end
 
 group :test do

@@ -1,0 +1,34 @@
+<div class='col s12 center'>
+  <div class='row blue-grey darken-1'>
+    <h5> Participantes </h5>
+    <% @plc.times do |p| %>
+      <% if @players_tournaments[@orderplayers[p]] != @players_tournaments[@orderplayers.max] %>
+        <div class='col s6 center'>
+          <% if p <= @tournament.maxplayers %>
+            <h6 class='deep-purple lighten-1 mp-5 z-depth-3'>
+              <%= @players_tournaments[@orderplayers[p]].player.name %> 
+              <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+            </h6>
+          <% else %>
+            <h6 class='cyan mp-5 z-depth-3'>
+              <%= @players_tournaments[@orderplayers[p]].player.name %> 
+              <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+            </h6>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class='col s12 center'>
+  <div class='row blue-grey darken-1'>
+    <h5> Moderador </h5>
+      <h6 class='deep-orange accent-2 mp-5 z-depth-3'>
+        <% if @players_tournaments[@orderplayers.max] %>
+          <%= @players_tournaments[@orderplayers.max].player.name %> 
+          <%= @players_tournaments[@orderplayers.max].player.points %> PUNTOS.
+        <% end %>
+      </h6>
+  </div>
+</div>

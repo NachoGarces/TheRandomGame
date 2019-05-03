@@ -1,0 +1,15 @@
+<div class='col s12 center'>
+  <div class='row blue-grey darken-1'>
+    <h5> Participantes </h5>
+    <% @plc.times do |p| %>
+      <% if @players_tournaments[@orderplayers[p]] != @players_tournaments[@orderplayers.max] %>
+        <div class='col s6 m3 l2 center'>
+          <h6 class='blue-grey lighten-1 mp-5 z-depth-3'>
+            <%= @players_tournaments[@orderplayers[p]].player.name %> 
+            <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+          </h6>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

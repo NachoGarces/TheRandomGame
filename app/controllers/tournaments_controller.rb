@@ -16,7 +16,7 @@ class TournamentsController < ApplicationController
     @players_tournaments = PlayersTournament.where(tournament_id: @tournament.id).all
     @plc = @players_tournaments.size
     @maxs = @tournament.maxplayers * @tournament.maxteam
-    # @maxs += 1 if @tournament.typetournament_id == 3
+    # @maxs1 = @maxs + 1 if @tournament.typetournament_id == 3
   end
 
   # GET /tournaments/new
@@ -50,6 +50,7 @@ class TournamentsController < ApplicationController
     @tournament.player_id = current_player.id
     @tournament.maxteam = 2 if @tournament.typetournament_id == 3
     @maxs = @tournament.maxplayers * @tournament.maxteam
+    @maxs += 1 if @tournament.typetournament_id == 3
     @tournament.orderplayers = random(@maxs)
     respond_to do |format|
       if @tournament.save

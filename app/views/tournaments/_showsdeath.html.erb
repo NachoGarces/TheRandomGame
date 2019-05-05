@@ -2,12 +2,60 @@
   <div class='row blue-grey darken-1'>
     <h5> Participantes </h5>
     <% @plc.times do |p| %>
-      <% if @players_tournaments[@orderplayers[p]] != @players_tournaments[@orderplayers.max] %>
-        <div class='col s6 m3 l2 center'>
-          <h6 class='blue-grey lighten-1 mp-5 z-depth-3'>
-            <%= @players_tournaments[@orderplayers[p]].player.name %> 
-            <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
-          </h6>
+      <% if @players_tournaments[@orderplayers[p]] %>
+        <div class='col s3 center'>
+          <% case %>
+            <% when @orderplayers[p] <= @tournament.maxplayers %>
+              <h6 class='deep-purple lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 2 %>
+              <h6 class='cyan mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 3 %>
+              <h6 class='light-green darken-2 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 4 %>
+              <h6 class='orange lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 5 %>
+              <h6 class='orange lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 6 %>
+              <h6 class='orange lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 7 %>
+              <h6 class='orange lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 8 %>
+              <h6 class='orange lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 9 %>
+              <h6 class='orange lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+            <% when @orderplayers[p] <= @tournament.maxplayers * 10 %>
+              <h6 class='orange lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[@orderplayers[p]].player.name %> 
+                <%= @players_tournaments[@orderplayers[p]].player.points %> PUNTOS.
+              </h6><% break %>
+          <% end %>
         </div>
       <% end %>
     <% end %>

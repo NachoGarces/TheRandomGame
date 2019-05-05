@@ -1,6 +1,64 @@
-<h1>Editing Tournament</h1>
+<div class='row'>
+  <div class='offset-s1 col s10 mb-4'>
+    <div class='card blue-grey darken-1'>
+      <div class='card-content'>
+        <div class='col s12 center'>
+          <div class='row blue-grey darken-1'>
+            <h3> Participantes... <%= @plc-1 %> de <%= @maxs %></h3>
+            <% @plc.times do |p| %>
+              <% if @players_tournaments[@orderplayers[p]-1] != @players_tournaments[@orderplayers.max - 1] %>
+                <div class='col s6 center'>
+                  <% if @orderplayers[p] <= @tournament.maxplayers %>
+                    <h6 class='red lighten-2 mp-5 z-depth-3'>
+                      <%= @players_tournaments[@orderplayers[p]-1].player.name %> 
+                      <%= @players_tournaments[@orderplayers[p]-1].player.points %> PUNTOS.
+                    </h6>
+                  <% else %>
+                    <h6 class='cyan mp-5 z-depth-3'>
+                      <%= @players_tournaments[@orderplayers[p]-1].player.name %> 
+                      <%= @players_tournaments[@orderplayers[p]-1].player.points %> PUNTOS.
+                    </h6>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <h4>Selecciona al equipo GANADOR para entregarle su premio</h4>
+        <%= form_with(model: @tournament, local: true, method: :put) do |form| %>
+          <% if @tournament.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
 
-<%= render 'form', tournament: @tournament %>
+              <ul>
+              <% @tournament.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-<%= link_to 'Show', @tournament %> |
-<%= link_to 'Back', tournaments_path %>
+          <div class='row'>
+            <div class="input-field col s12">
+              <%= form.select :winner, Winner: ['Rojo', 'Azul'] %>
+            </div>
+
+            <div class='col s12'>
+              <button class="btn waves-effect waves-light blue-grey lighten-1" type="submit" name="action"><%= form.submit %>
+                <i class="material-icons right fa-spin">games</i>
+              </button>
+            </div>
+          </div>
+        <% end %>
+
+        <%= link_to 'Back', tournament_path(@tournament), class:'waves-effect waves-teal btn-flat' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>

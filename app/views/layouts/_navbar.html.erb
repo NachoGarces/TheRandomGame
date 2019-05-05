@@ -4,9 +4,6 @@
       <% if current_player %>
         <a class="brand-logo" href="<%= root_path %>"><%#= current_player.avatar %></a>
         <a class="brand-logo" href="<%= root_path %>"><%= current_player.name %></a>
-      <% else %>
-        <a class="waves-effect waves-light btn" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a>
-        <a class="waves-effect waves-light btn" href='<%= new_player_registration_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Registrate</a>
       <% end %>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
@@ -15,8 +12,8 @@
           <li><%= link_to "Rags: #{current_player.rags}", billings_path %></li>
           <%= link_to 'Cerrar sesion', destroy_player_session_path, :method => :delete, class:"waves-effect waves-teal btn-flat" %>
         <% else %>
-          <a class="waves-effect waves-light btn" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a>
-          <a class="waves-effect waves-light btn" href='<%= new_player_registration_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Registrate</a>
+          <li><a class="waves-effect waves-light btnblue-grey lighten-1" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a></li>
+          <li><a class="waves-effect waves-light btnblue-grey lighten-1" href='<%= new_player_registration_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Registrate</a></li>
         <% end %>
       </ul>
     </div>
@@ -28,6 +25,9 @@
       <li>Puntos: <%= current_player.points %></li>
       <li><%= link_to "Rags: #{current_player.rags}", billings_path %></li>
       <%= link_to 'Cerrar sesion', destroy_player_session_path, :method => :delete, class:"waves-effect waves-teal btn-flat" %>
+    <% else %>
+      <li><a class="waves-effect waves-light btn blue-grey lighten-1" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a></li>
+      <li><a class="waves-effect waves-light btn blue-grey lighten-1" href='<%= new_player_registration_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Registrate</a></li>
     <% end %>
   </ul>
 <script>

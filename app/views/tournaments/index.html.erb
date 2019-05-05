@@ -13,7 +13,7 @@
     <div class="col s12 m6 l4">
       <div class="card large center blue-grey darken-1">
         <div class="card-image">
-          <%= image_tag tournament.game.logo %>
+          <div id='opacity'><%= image_tag tournament.game.logo %></div>
           <span class="card-title col s12 center">
             <h4><%= tournament.player.name %> <%= tournament.player.last_name %> 
               <br /> <%= tournament.player.points %>
@@ -27,7 +27,7 @@
             <strong>Rags</strong>
           </h5>
           <h5 class='col s6'>Duelo tipo<br/> <%= tournament.typetournament.typetournamentname %></h5>
-          <h5 class='col s12'>Se juega <br/><%= tournament.date %></h5>
+          <h5 class='col s12'>Se juega <br/><%= tournament.date.strftime('%a %d %b %Y') %></h5>
         </div>
         <div class="card-action">
           <%= link_to 'Revisa y combate', tournament, class:'btn blue-grey lighten-1' %>

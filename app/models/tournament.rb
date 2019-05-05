@@ -1,8 +1,8 @@
 class Tournament < ApplicationRecord
   belongs_to :player
-  belongs_to :typetournament, :dependent => :destroy
+  belongs_to :typetournament
 
-  has_many :players_tournaments, :dependent => :destroy
+  has_many :players_tournaments, dependent: :delete_all
   has_many :players, through: :players_tournaments
   accepts_nested_attributes_for :players_tournaments
 

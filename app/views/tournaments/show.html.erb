@@ -25,11 +25,16 @@
 
     <h5 class='col s6'>Duelo tipo<br/> <%= @tournament.typetournament.typetournamentname %></h5>
 
-    <h5 class='col s12'>Se juega <br/><%= @tournament.date %></h5>
+    <h5 class='col s12'>Se juega <br/><%= @tournament.date.strftime('%a %d %b %Y') %></h5>
+
+    <h5 class='col s12'> Descripcion<br/><%= @tournament.description %></h5>
 
     <h3 class='col s12'>
-      <strong>Winner winner chicken dinner</strong>
-      <%= @tournament.winner %>
+      <% if @tournament.winner? %>
+        <%= @tournament.winner %>
+      <% else %>
+        <strong>Winner winner chicken dinner</strong>
+      <% end %>
     </h3>
 
     <%# 3 = PvP -- 2 = Sudden Death -- 1 = Star %>
@@ -45,9 +50,7 @@
     
     <br>
 
-    <%= link_to 'Editar', edit_tournament_path(@tournament), class:'col s6 waves-effect waves-teal btn-flat' %>
-
-    <%= link_to 'Atras', tournaments_path, class:'col s6 waves-effect waves-teal btn-flat' %>
+    <%= link_to 'Atras', tournaments_path, class:'col s12 waves-effect waves-teal btn-flat' %>
 
   </div>
   <div class='col s12 m4 13 blue-grey darken-1' id='site-layout-example-left'>
@@ -60,11 +63,13 @@
     </div>
     <%= form_with model: [@tournament, @comment], method: :post do |f| %>
       <%= f.hidden_field :tournament_id, value: @tournament.id %>
-      <%= f.text_field :content %>
+      <%= f.text_field :content, placeholder:"Mensaje" %>
       <button class="btn waves-effect blue-grey lighten-1" type="submit" name="action">
         <%= f.submit :enviar %>
         <i class="material-icons right">send</i>
       </button>
+
+      <%= link_to '', "https://discordapp.com/login", class:"fab fa-discord fa-2x right" %>
     <% end %>
   </div>
 </div>

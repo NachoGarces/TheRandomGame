@@ -16,7 +16,7 @@ class PlayersTournamentsController < ApplicationController
     if @t_f == false
       @players_tournament.save
       redirect_to tournament_path(@tournament), notice: "Bienvenido a la batalla!"
-      if @tournament.typetournament_id == 3 && @players_tournaments.size < @maxs || @tournament.typetournament_id < 3
+      if @tournament.typetournament_id == 3 && @plc < @maxs || @tournament.typetournament_id < 3
         current_player.rags -= @tournament.bet_amounts
         current_player.save
       end

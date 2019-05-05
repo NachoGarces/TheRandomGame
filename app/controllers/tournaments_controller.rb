@@ -11,12 +11,6 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1.json
   def show
     @comment = Comment.new
-    @orderplayers = @tournament.orderplayers
-    # @players_tournaments_arr = PlayersTournament.where(tournament_id: @tournament.id).pluck(:tournament_id, :player_id)
-    @players_tournaments = PlayersTournament.where(tournament_id: @tournament.id).all
-    @plc = @players_tournaments.size
-    @maxs = @tournament.maxplayers * @tournament.maxteam
-    # @maxs1 = @maxs + 1 if @tournament.typetournament_id == 3
   end
 
   # GET /tournaments/new
@@ -32,7 +26,7 @@ class TournamentsController < ApplicationController
   def random(maxs)
     players_total = []
     maxs.times do |l|
-      players_total << l
+      players_total << l + 1
     end
     teams_randoms = []
     maxs.times do
@@ -65,9 +59,25 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def winner_pvp
+  end
   # PATCH/PUT /tournaments/1
   # PATCH/PUT /tournaments/1.json
   def update
+    if @tournament.winner == 'Azul' && @tournament.typetournament_id == 3
+      @players_tournaments[@orderplayers.max - 1].player.rags
+      @orderplayers.delete(@orderplayers.max)
+      @orderdelete.times do
+        @orderplayers.delete(@orderplayers.min)
+      end
+    elsif @tournament.winner == 'Rojo'
+      @players_tournaments[@orderplayers.max - 1].player.rags
+      @orderplayers.delete(@orderplayers.max)
+      @orderdelete.times do
+        @orderplayers.delete(@orderplayers.max)
+      end
+    end
+
     respond_to do |format|
       if @tournament.update(tournament_params)
         format.html { redirect_to @tournament, notice: 'Todo correcto y actualizado!' }
@@ -92,21 +102,28 @@ class TournamentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
     def set_tournament
       @tournament = Tournament.find(params[:id])
+      @players_tournaments = PlayersTournament.where(tournament_id: @tournament.id).all
+      @orderplayers = @tournament.orderplayers
+      @plc = @players_tournaments.size
+      @orderdelete = (@plc - 1) / 2
+      @maxs = @tournament.maxplayers * @tournament.maxteam
+      # @players_tournaments_arr = PlayersTournament.where(tournament_id: @tournament.id).pluck(:player_id)
+      # @maxs1 = @maxs + 1 if @tournament.typetournament_id == 3
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tournament_params
-      params.require(:tournament).permit(:player_id, 
-                                         :typetournament_id, 
-                                         :game_id, 
-                                         :description, 
-                                         :bet_amounts, 
-                                         :winner, 
-                                         :maxteam, 
-                                         :maxplayers, 
+      params.require(:tournament).permit(:player_id,
+                                         :typetournament_id,
+                                         :game_id,
+                                         :description,
+                                         :bet_amounts,
+                                         :winner,
+                                         :maxteam,
+                                         :maxplayers,
                                          :date,
                                          players_tournaments_attributes: [:id, :player_id, :tournament_id])
     end

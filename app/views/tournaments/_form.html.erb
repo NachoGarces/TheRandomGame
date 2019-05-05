@@ -15,44 +15,48 @@
     <%= pl_id.hidden_field :player_id, value: current_player.id %>
   <% end %>
 
-  <div class="input-field col s12">
-    <%= form.select :game_id, game: Game.pluck(:namegame, :id) %>
-  </div>
+  <div class='row'>
+    <div class="input-field col s12">
+      <%= form.select :game_id, game: Game.pluck(:namegame, :id) %>
+    </div>
 
-  <div class="input-field col s12">
-    <%= form.select :typetournament_id, Tipo_de_torneo: Typetournament.pluck(:typetournamentname, :id) %>
-  </div>
+    <div class="input-field col s12">
+      <%= form.select :typetournament_id, Tipo_de_torneo: Typetournament.pluck(:typetournamentname, :id) %>
+    </div>
 
-  <div class="input-field col s12">
-    <%= form.label :maximo_de_teams %>
-    <%= form.number_field :maxteam, min:'2' %>
-    <span class="helper-text" data-error="wrong" data-success="right">Recuerda que tambien debes considerarte a ti en el total</span>
-  </div>
+    <div class="input-field col s12">
+      <%= form.label :maximo_de_teams %>
+      <%= form.number_field :maxteam, min:'2' %>
+      <span class="helper-text" data-error="wrong" data-success="right">Recuerda que tambien debes considerarte a ti en el total</span>
+    </div>
 
-  <div class="input-field col s12">
-    <%= form.label :maximo_de_players %>
-    <%= form.number_field :maxplayers, min:'1' %>
-  </div>
+    <div class="input-field col s12">
+      <%= form.label :maximo_de_players %>
+      <%= form.number_field :maxplayers, min:'1' %>
+    </div>
 
-  <div class="input-field col s12 l8 m8">
-    <%= form.label :descripcion %>
-    <%= form.text_area :description, id:'textarea1', class:'materialize-textarea' %>
-  </div>
+    <div class="input-field col s12 l8 m8">
+      <%= form.label :descripcion %>
+      <%= form.text_area :description, id:'textarea1', class:'materialize-textarea' %>
+    </div>
 
-  <div class="input-field col s12 l4 m4">
-    <%= form.label :fecha %>
-    <%= form.date_field :date, class:'datepicker', type:'text' %>
-  </div>
+    <div class="input-field col s12 l4 m4">
+      <%= form.label :fecha %>
+      <%= form.date_field :date, class:'datepicker', type:'text' %>
+    </div>
 
-  <div class="input-field col s12">
-    <%= form.label :monto_de_apuesta %>
-    <%= form.number_field :bet_amounts, min:'10', max: current_player.rags, class:"form-control md-textarea" %>
-    <span class='thumb'><span class='value'></span></span>
-  </div>
+    <div class="input-field col s12">
+      <%= form.label :monto_de_apuesta %>
+      <%= form.number_field :bet_amounts, min:'10', max: current_player.rags, class:"form-control md-textarea" %>
+      <span class='thumb'><span class='value'></span></span>
+    </div>
 
-  <button class="btn waves-effect waves-light" type="submit" name="action"><%= form.submit %>
-    <i class="material-icons right fa-spin">games</i>
-  </button>
+    <div class='col s12'>
+      <button class="btn waves-effect waves-light blue-grey lighten-1" type="submit" name="action"><%= form.submit %>
+        <i class="material-icons right fa-spin">games</i>
+      </button>
+    </div>
+  </div>
 <% end %>
 
 <script>
@@ -60,18 +64,6 @@
     $('select').formSelect();
     $('.datepicker').datepicker({
       firstDay: 1,
-      labelMonthNext: 'Siguiente Mes',
-      labelMonthPrev: 'Mes Anterior',
-      labelMonthSelect: 'Seleccionar mes',
-      labelYearSelect: 'Seleccionar año',
-      monthsFull: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
-      monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
-      weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
-      weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
-      weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
-      today: 'Today',
-      clear: 'Clear',
-      close: 'Close'
     });
     $('.timepicker').timepicker();
   });

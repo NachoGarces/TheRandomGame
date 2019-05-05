@@ -16,21 +16,21 @@
   <% end %>
 
   <div class='row'>
-    <div class="input-field col s12">
+    <div class="input-field col m6">
       <%= form.select :game_id, game: Game.pluck(:namegame, :id) %>
     </div>
 
-    <div class="input-field col s12">
+    <div class="input-field col m6">
       <%= form.select :typetournament_id, Tipo_de_torneo: Typetournament.pluck(:typetournamentname, :id) %>
     </div>
 
-    <div class="input-field col s12">
+    <div class="input-field col m6">
       <%= form.label :maximo_de_teams %>
       <%= form.number_field :maxteam, min:'2' %>
       <span class="helper-text" data-error="wrong" data-success="right">Recuerda que tambien debes considerarte a ti en el total</span>
     </div>
 
-    <div class="input-field col s12">
+    <div class="input-field col m6">
       <%= form.label :maximo_de_players %>
       <%= form.number_field :maxplayers, min:'1' %>
     </div>

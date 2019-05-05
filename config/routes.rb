@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :billings, only: [:index] do
     collection do
       get 'pre_pay'
+      get 'execute'
     end
   end
   root 'tournaments#index'

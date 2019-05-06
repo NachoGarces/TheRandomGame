@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy, :winner_pvp]
-  before_action :authenticate_player!, except: [:index]
+  before_action :authenticate_player!
 
   # GET /tournaments
   # GET /tournaments.json

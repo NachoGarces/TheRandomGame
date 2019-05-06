@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_player!
 
   def create
     @comment = Comment.create(comment_params)

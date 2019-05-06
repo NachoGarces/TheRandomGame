@@ -1,5 +1,6 @@
 class TypetournamentsController < ApplicationController
   before_action :set_typetournament, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_player!
 
   # GET /typetournaments
   # GET /typetournaments.json

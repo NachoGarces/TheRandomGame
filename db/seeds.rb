@@ -7,8 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do |n|
-  "p#{n}" = Player.create!({name: "player#{n}", last_name: "#{n}player", email: "player#{n}@gmail.com", rags: "10000", password: "123456", password_confirmation: "123456"})
+  Player.create!({name: "player#{n}", last_name: "#{n}player", email: "player#{n}@gmail.com", rags: "10000", password: "123456", password_confirmation: "123456"})
 end
+
+Typetournament.create!({typetournamentname: 'Star'})
+Typetournament.create!({typetournamentname: 'Sudden Death'})
+Typetournament.create!({typetournamentname: 'PvP'})
 
 g1 = Game.create!({namegame: "splatoon 2", maxplayers: "5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", year: "2017", developer: "nintendo", logo: ""})
 g1 = Game.create!({namegame: "Rocket League", maxplayers: "5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", year: "2015", developer: "Psyonix", logo: ""})

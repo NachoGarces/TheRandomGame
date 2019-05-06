@@ -1,15 +1,15 @@
 <div class='row'>
   <div>
-    <% case @tournament.typetournament_id %>
-      <% when 1 %>
+    <% case @tournament.typetournament.typetournamentname %>
+      <% when 'Star' %>
         <%= render 'tournaments/showstar' %>
-      <% when 2 %>
+      <% when 'Sudden Death' %>
         <%= render 'tournaments/showsdeath' %>
-      <% when 3 %>
+      <% when 'PvP' %>
         <%= render 'tournaments/showpvp' %>
     <% end %>
   </div>
-  <div class='col s12 m8 19  blue-grey darken-1 center z-depth-3'>
+  <div class='col s12 m8 19 blue-grey darken-1 center z-depth-3'>
     <%= image_tag @tournament.game.logo, width:'400px' %>
 
     <h4>
@@ -31,7 +31,7 @@
 
     <h3 class='col s12'>
       <% if @tournament.winner? %>
-        <%= @tournament.winner %>
+        Team <%= @tournament.winner %> es el ganador!
       <% else %>
         <strong>Winner winner chicken dinner</strong>
       <% end %>
@@ -39,7 +39,7 @@
 
     <%# 3 = PvP -- 2 = Sudden Death -- 1 = Star %>
     <% if @maxs >= @plc %>
-      <% if @tournament.typetournament_id == 3 && @plc < @maxs || @tournament.typetournament_id < 3 %>
+      <% if @tournament.typetournament.typetournamentname == 'PvP' && @plc < @maxs || @tournament.typetournament.typetournamentname != 'PvP' %>
         <%= link_to 'Unirse como COMPETIDOR', tournament_players_tournaments_path(@tournament), method: :post, class:"waves-effect btn col s12 blue-grey lighten-1" %>
       <% else %>
         <%= link_to 'Unirse como MODERADOR', tournament_players_tournaments_path(@tournament), method: :post, class:"waves-effect btn col s12 blue-grey lighten-1" %>
@@ -53,7 +53,7 @@
     <%= link_to 'Atras', tournaments_path, class:'col s12 waves-effect waves-teal btn-flat' %>
 
   </div>
-  <div class='col s12 m4 13 blue-grey darken-1' id='site-layout-example-left'>
+  <div class='col s12 m4 13 blue-grey darken-1 z-depth-2' id='site-layout-example-left'>
     <div class='col s12'  id='comments'>
       <% @tournament.comments.pluck(:content).each do |c| %>
           <h6><%= c %></h6> <hr>
@@ -61,16 +61,18 @@
       <div>
       </div>
     </div>
-    <%= form_with model: [@tournament, @comment], method: :post do |f| %>
-      <%= f.hidden_field :tournament_id, value: @tournament.id %>
-      <%= f.text_field :content, placeholder:"Mensaje" %>
-      <button class="btn waves-effect blue-grey lighten-1" type="submit" name="action">
-        <%= f.submit :enviar %>
-        <i class="material-icons right">send</i>
-      </button>
-
-      <%= link_to '', "https://discordapp.com/login", class:"fab fa-discord fa-2x right" %>
+    <% unless @tournament.winner? %>
+      <%= form_with model: [@tournament, @comment], method: :post do |f| %>
+        <%= f.hidden_field :tournament_id, value: @tournament.id %>
+        <%= f.text_field :content, placeholder:"Mensaje" %>
+        <button class="btn waves-effect blue-grey lighten-1" type="submit" name="action">
+          <%= f.submit :enviar %>
+          <i class="material-icons right">send</i>
+        </button>
+        <%= link_to '', "https://discordapp.com/login", class:"fab fa-discord fa-2x right" %>
+      <% end %>
     <% end %>
+    <br>
   </div>
 </div>
 

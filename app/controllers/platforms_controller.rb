@@ -1,5 +1,6 @@
 class PlatformsController < ApplicationController
   before_action :set_platform, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_player!
 
   # GET /platforms
   # GET /platforms.json

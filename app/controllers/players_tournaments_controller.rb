@@ -1,4 +1,5 @@
 class PlayersTournamentsController < ApplicationController
+  before_action :authenticate_player!
 
   def create
     @tournament = Tournament.find(params[:tournament_id])

@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_player!
   # before_action :gameplatforms, only: [:update, :create]
 
   # GET /games

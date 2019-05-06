@@ -1,5 +1,6 @@
 class NicknamesController < ApplicationController
   before_action :set_nickname, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_player!
 
   # GET /nicknames
   # GET /nicknames.json

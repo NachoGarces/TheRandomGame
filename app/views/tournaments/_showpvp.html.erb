@@ -59,8 +59,12 @@
       <h5> Team Ganador!! </h5>
       <% @orderplayers.size.times do |p| %>
         <div class='col s12 center'>
-          <% if @players_tournaments[@orderplayers[p]-1] %>
-            <h6 class='blue-grey lighten-1 mp-5 z-depth-3'>
+          <% if @players_tournaments[@orderplayers[p]-1] && @tournament.winner == 'Rojo' %>
+            <h6 class='red lighten-2 mp-5 z-depth-3'>
+              <%= @players_tournaments[@orderplayers[p]-1].player.name %> 
+            </h6>
+          <% else %>
+            <h6 class='cyan mp-5 z-depth-3'>
               <%= @players_tournaments[@orderplayers[p]-1].player.name %> 
             </h6>
           <% end %>

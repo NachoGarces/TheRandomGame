@@ -1,4 +1,5 @@
 class BillingsController < ApplicationController
+  before_action :authenticate_player!
 
   def cant_rags(amount)
     case amount

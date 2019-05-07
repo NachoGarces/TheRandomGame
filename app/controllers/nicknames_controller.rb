@@ -5,7 +5,7 @@ class NicknamesController < ApplicationController
   # GET /nicknames
   # GET /nicknames.json
   def index
-    @nicknames = Nickname.all
+    @nicknames = Nickname.where(player_id: current_player.id).all
   end
 
   # GET /nicknames/1

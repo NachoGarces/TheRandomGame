@@ -2,7 +2,7 @@
 <% if @maxs == @plc-1 && @tournament.winner? == false %>
   <div class='col s12 center'>
     <div class='row blue-grey darken-1'>
-      <h5> Participantes... <%= @plc %> de <%= @maxs %></h5>
+      <h5> Team Rojo, Team Azul... Preparados? </h5>
       <% @plc.times do |p| %>
         <% if @players_tournaments[@orderplayers[p]-1] != @players_tournaments[@orderplayers.max - 1] %>
           <div class='col s6 center'>
@@ -40,7 +40,7 @@
 <% elsif @tournament.winner? == false %>
   <div class='col s12 center'>
     <div class='row blue-grey darken-1'>
-      <h5> Participantes... <%= @plc %> de <%= @maxs %></h5>
+      <h5> Participantes... <%= @plc %> de <%= @maxs %> </h5>
       <% @maxs.times do |p| %>
         <div class='col s4 center'>
           <% if @players_tournaments[p] %>

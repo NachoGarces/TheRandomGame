@@ -10,8 +10,8 @@
         <% if current_player %>
           <li>Puntos: <%= current_player.points %></li>
           <li><%= link_to "Rags: #{current_player.rags}", billings_path %></li>
-          <%= link_to 'Cerrar sesion', destroy_player_session_path, :method => :delete, class:"waves-effect waves-teal btn-flat" %>
           <li><a class="waves-effect waves-light btnblue-grey lighten-1" href='<%= nicknames_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Nick Names</a></li>
+          <li><%= link_to 'Cerrar sesion', destroy_player_session_path, :method => :delete, class:"waves-effect waves-light btnblue-grey lighten-1" %></li>
         <% else %>
           <li><a class="waves-effect waves-light btnblue-grey lighten-1" href='<%= new_player_session_path %>'><i class="material-icons left fa-spin">gamepad</i>Iniciar sesion</a></li>
           <li><a class="waves-effect waves-light btnblue-grey lighten-1" href='<%= new_player_registration_path %>'><i class="material-icons left fa-spin">videogame_asset</i>Registrate</a></li>

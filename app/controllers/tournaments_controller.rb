@@ -110,12 +110,12 @@ class TournamentsController < ApplicationController
     end
 
     def rags_mod(player_mod)
-      player_mod.rags += (20 * @total) / 100
+      player_mod.rags += (10 * @total) / 100 # 10 es el % para el mod
       player_mod.save
     end
 
     def rags_winners(players_winners)
-      players_winners.rags += ((80 * @total) / 100) / @orderplayers.size
+      players_winners.rags += ((90 * @total) / 100) / @orderplayers.size # 90 es el % del ganador
       players_winners.points += 1
       players_winners.save
     end

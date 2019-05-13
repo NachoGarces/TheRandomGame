@@ -4,6 +4,8 @@
 
 The random games es la aplicacion web que permite unir a la comunidad de jugadores en un competitivo sano y limpio en el cual pueden obtener monedas (Rags) al ganar torneos para luego canjearlos por Keys de distintos juegos.
  
+# Link Heroku:
+https://therandomgames.herokuapp.com/
  
 # Link Trello:
 https://trello.com/b/dlRsRhRW/therandomgames

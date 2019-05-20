@@ -106,6 +106,8 @@ class TournamentsController < ApplicationController
       end
       tp = tournament_params
       tp["orderplayers"] = @orderplayers
+      tp["incourse"] = false if @tournament.maxplayers == @orderplayers.size
+
       return tp
     end
 
@@ -142,6 +144,7 @@ class TournamentsController < ApplicationController
                                          :maxplayers,
                                          :date,
                                          :orderplayers,
+                                         :incourse,
                                          players_tournaments_attributes: [:id, :player_id, :tournament_id])
     end
 end

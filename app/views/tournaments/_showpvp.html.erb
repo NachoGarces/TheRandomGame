@@ -1,59 +1,62 @@
-<%# Vista de torneo completo y sin ganador %>
-<% if @maxs == @plc-1 && @tournament.winner? == false %>
-  <div class='col s12 center'>
-    <div class='row blue-grey darken-1'>
-      <h5> Team Rojo, Team Azul... Preparados? </h5>
-      <% @plc.times do |p| %>
-        <% if @players_tournaments[@orderplayers[p]-1] != @players_tournaments[@orderplayers.max - 1] %>
-          <div class='col s6 center'>
-            <% if @orderplayers[p] <= @tournament.maxplayers %>
-              <h6 class='red lighten-2 mp-5 z-depth-3'>
-                <%= @players_tournaments[@orderplayers[p]-1].player.name %> 
-                <%= @players_tournaments[@orderplayers[p]-1].player.points %> PUNTOS.
-              </h6>
-            <% else %>
-              <h6 class='cyan mp-5 z-depth-3'>
-                <%= @players_tournaments[@orderplayers[p]-1].player.name %> 
-                <%= @players_tournaments[@orderplayers[p]-1].player.points %> PUNTOS.
+<%# Torneo en curso %>
+<% if @tournament.incourse? %>
+  <%# Vista de torneo completo %>
+  <% if @maxs == @plc-1 %>
+    <div class='col s12 center'>
+      <div class='row blue-grey darken-1'>
+        <h5> Team Rojo, Team Azul... Preparados? </h5>
+        <% @plc.times do |p| %>
+          <% if @players_tournaments[@orderplayers[p]-1] != @players_tournaments[@orderplayers.max - 1] %>
+            <div class='col s6 center'>
+              <% if @orderplayers[p] <= @tournament.maxplayers %>
+                <h6 class='red lighten-2 mp-5 z-depth-3'>
+                  <%= @players_tournaments[@orderplayers[p]-1].player.name %> 
+                  <%= @players_tournaments[@orderplayers[p]-1].player.points %> PUNTOS.
+                </h6>
+              <% else %>
+                <h6 class='cyan mp-5 z-depth-3'>
+                  <%= @players_tournaments[@orderplayers[p]-1].player.name %> 
+                  <%= @players_tournaments[@orderplayers[p]-1].player.points %> PUNTOS.
+                </h6>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='col s12 center'>
+      <div class='row blue-grey darken-1'>
+        <h5> Moderador </h5>
+        <div class='col s12'>
+          <h6 class='orange accent-2 mp-5 z-depth-3'>
+            <% if @players_tournaments[@orderplayers.max - 1] %>
+              <%= @players_tournaments[@orderplayers.max - 1].player.name %> 
+              <br><%= link_to 'Si ya terminaron la partida clickea aquí', edit_tournament_path(@tournament) %>
+            <% end %>
+          </h6>
+        </div>
+      </div>
+    </div>
+  <%# Vista de torneo incompleto y en curso %>
+  <% else %>
+    <div class='col s12 center'>
+      <div class='row blue-grey darken-1'>
+        <h5> Participantes... <%= @plc %> de <%= @maxs %> </h5>
+        <% @maxs.times do |p| %>
+          <div class='col s4 center'>
+            <% if @players_tournaments[p] %>
+              <h6 class='blue-grey lighten-1 mp-5 z-depth-3'>
+                <%= @players_tournaments[p].player.name %> 
               </h6>
             <% end %>
           </div>
         <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class='col s12 center'>
-    <div class='row blue-grey darken-1'>
-      <h5> Moderador </h5>
-      <div class='col s12'>
-        <h6 class='orange accent-2 mp-5 z-depth-3'>
-          <% if @players_tournaments[@orderplayers.max - 1] %>
-            <%= @players_tournaments[@orderplayers.max - 1].player.name %> 
-            <br><%= link_to 'Si ya terminaron la partida clickea aquí', edit_tournament_path(@tournament) %>
-          <% end %>
-        </h6>
       </div>
-    </div>
-  </div>
-<%# Vista de torneo incompleto y sin ganador %>
-<% elsif @tournament.winner? == false %>
-  <div class='col s12 center'>
-    <div class='row blue-grey darken-1'>
-      <h5> Participantes... <%= @plc %> de <%= @maxs %> </h5>
-      <% @maxs.times do |p| %>
-        <div class='col s4 center'>
-          <% if @players_tournaments[p] %>
-            <h6 class='blue-grey lighten-1 mp-5 z-depth-3'>
-              <%= @players_tournaments[p].player.name %> 
-            </h6>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-<%# Vista de torneo completo o incompleto con ganador %>
+    </div> 
+  <% end %>
 <% else %>
+<%# Vista de torneo completo o incompleto y no en curso %>
   <div class='col s12 center'>
     <div class='row blue-grey darken-1'>
       <h5> Team Ganador!! </h5>

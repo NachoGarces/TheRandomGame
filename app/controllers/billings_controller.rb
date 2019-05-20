@@ -15,6 +15,16 @@ class BillingsController < ApplicationController
   end
 
   def pre_pay
+    amount = params[:amount]
+    rags = params[:rags]
+    if amount == "7.38" && rags == "1000" || amount == "18.47" && rags == "2800" || amount == "44.32" && rags == "7500" || amount == "73.86" && rags == "13500"
+      pre_pay_accepted
+    else
+      redirect_to root_path, alert: "Pero porque? Si somos amigos:c"
+    end
+  end
+
+  def pre_pay_accepted
     @amount = params[:amount]
     @rags = params[:rags]
     @rags_string = cant_rags(@amount)
@@ -43,7 +53,7 @@ class BillingsController < ApplicationController
       redirect_url = @payment.links.find{ |v| v.method == 'REDIRECT' }.href
       redirect_to redirect_url
     else
-      ':c'
+      redirect_to root_path, alert: "Ups:c Solo un bug, no sabemos que paso, pero ahora si que funciona"
     end
   end
 

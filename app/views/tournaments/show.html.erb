@@ -61,7 +61,7 @@
       <div>
       </div>
     </div>
-    <% unless @tournament.winner? %>
+    <% if @tournament.incourse? %>
       <%= form_with model: [@tournament, @comment], method: :post do |f| %>
         <%= f.hidden_field :tournament_id, value: @tournament.id %>
         <%= f.text_field :content, placeholder:"Mensaje" %>

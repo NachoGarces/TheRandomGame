@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_16_025210) do
+ActiveRecord::Schema.define(version: 2019_05_28_223350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_025210) do
     t.datetime "date"
     t.integer "orderplayers", default: [], array: true
     t.boolean "incourse", default: true
+    t.integer "ordermods", default: [], array: true
     t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["player_id"], name: "index_tournaments_on_player_id"
     t.index ["typetournament_id"], name: "index_tournaments_on_typetournament_id"

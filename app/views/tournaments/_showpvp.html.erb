@@ -1,12 +1,12 @@
 <%# Torneo en curso %>
 <% if @tournament.incourse? %>
   <%# Vista de torneo completo %>
-  <% if @maxs == @plc-1 %>
+  <% if @maxs+@mods.size == @plc %>
     <div class='col s12 center'>
       <div class='row blue-grey darken-1'>
         <h5> Team Rojo, Team Azul... Preparados? </h5>
-        <% @plc.times do |p| %>
-          <% if @players_tournaments[@orderplayers[p]-1] != @players_tournaments[@orderplayers.max - 1] %>
+        <% @maxs.times do |p| %>
+          <% if @players_tournaments[@orderplayers[p]-1] %>
             <div class='col s6 center'>
               <% if @orderplayers[p] <= @tournament.maxplayers %>
                 <h6 class='red lighten-2 mp-5 z-depth-3'>
@@ -30,9 +30,9 @@
         <h5> Moderador </h5>
         <div class='col s12'>
           <h6 class='orange accent-2 mp-5 z-depth-3'>
-            <% if @players_tournaments[@orderplayers.max - 1] %>
-              <%= @players_tournaments[@orderplayers.max - 1].player.name %> 
-              <br><%= link_to 'Si ya terminaron la partida clickea aquí', edit_tournament_path(@tournament) %>
+            <% if @players_tournaments[@ordermods.max - 1] %>
+              <%= @players_tournaments[@ordermods.max - 1].player.name %>
+              <br><%= link_to 'Si ya terminaron la partida clickea aquí', edit_tournament_path(@tournament) if @players_tournaments[@ordermods.max - 1].player_id == current_player.id %>
             <% end %>
           </h6>
         </div>
@@ -42,7 +42,11 @@
   <% else %>
     <div class='col s12 center'>
       <div class='row blue-grey darken-1'>
-        <h5> Participantes... <%= @plc %> de <%= @maxs %> </h5>
+        <% if @plc == @maxs %>
+          <h5> Participantes Completos - Mods <%= @plc-@maxs %> de <%= @mods.size %> </h5>
+        <% else %>
+          <h5> Participantes <%= @plc %> de <%= @maxs %> </h5>
+        <% end %>
         <% @maxs.times do |p| %>
           <div class='col s4 center'>
             <% if @players_tournaments[p] %>

@@ -4,9 +4,9 @@
       <div class='card-content'>
         <div class='col s12 center'>
           <div class='row blue-grey darken-1'>
-            <h3> Participantes... <%= @plc-1 %> de <%= @maxs %></h3>
-            <% @plc.times do |p| %>
-              <% if @players_tournaments[@orderplayers[p]-1] != @players_tournaments[@orderplayers.max - 1] %>
+            <h3> Moderador, has lo correcto </h3>
+            <% @maxs.times do |p| %>
+              <% if @players_tournaments[@orderplayers[p]-1] %>
                 <div class='col s6 center'>
                   <% if @orderplayers[p] <= @tournament.maxplayers %>
                     <h6 class='red lighten-2 mp-5 z-depth-3'>

@@ -1,6 +1,6 @@
 <div class='row'>
   <div>
-    <% case @tournament.typetournament.typetournamentname %>
+    <% case @ttn %>
       <% when 'Star' %>
         <%= render 'tournaments/showstar' %>
       <% when 'Sudden Death' %>
@@ -23,7 +23,7 @@
       <strong>Rags</strong>
     </h5>
 
-    <h5 class='col s6'>Duelo tipo<br/> <%= @tournament.typetournament.typetournamentname %></h5>
+    <h5 class='col s6'>Duelo tipo<br/> <%= @ttn %></h5>
 
     <h5 class='col s12'>Se juega <br/><%= @tournament.date.strftime('%a %d %b %Y') %></h5>
 
@@ -38,8 +38,8 @@
     </h3>
 
     <%# 3 = PvP -- 2 = Sudden Death -- 1 = Star %>
-    <% if @maxs >= @plc %>
-      <% if @tournament.typetournament.typetournamentname == 'PvP' && @plc < @maxs || @tournament.typetournament.typetournamentname != 'PvP' %>
+    <% if @maxs+@mods.size > @plc %>
+      <% if @plc < @maxs %>
         <%= link_to 'Unirse como COMPETIDOR', tournament_players_tournaments_path(@tournament), method: :post, class:"waves-effect btn col s12 blue-grey lighten-1" %>
       <% else %>
         <%= link_to 'Unirse como MODERADOR', tournament_players_tournaments_path(@tournament), method: :post, class:"waves-effect btn col s12 blue-grey lighten-1" %>

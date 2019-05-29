@@ -6,7 +6,8 @@ class PlayersTournamentsController < ApplicationController
     @players_tournament = PlayersTournament.new(player_id: current_player.id, tournament_id: @tournament.id)
     @players_tournaments = PlayersTournament.where(tournament_id: @tournament.id).pluck(:tournament_id, :player_id)
     @maxs = @tournament.maxplayers * @tournament.maxteam
-    ttname = @tournament.typetournament.typetournamentname
+    @mods = @tournament.ordermods.size
+    ttn = @tournament.typetournament.typetournamentname
     # @maxs += 1 if @tournament.typetournament_id == 3
     @plc = @players_tournaments.size
     @t_f = false
@@ -15,9 +16,9 @@ class PlayersTournamentsController < ApplicationController
       @t_f = true if @players_tournaments[i][1] == current_player.id
     end
 
-    if @t_f == false && current_player.rags >= @tournament.bet_amounts || @t_f == false && @plc == @maxs && ttname == 'PvP'
+    if @t_f == false && current_player.rags >= @tournament.bet_amounts || @t_f == false && @plc >= @maxs && @plc <= (@maxs+@mods)
       @players_tournament.save
-      if ttname == 'PvP' && @plc < @maxs || ttname != 'PvP'
+      if @plc < @maxs
         current_player.rags -= @tournament.bet_amounts
         current_player.save
         redirect_to tournament_path(@tournament), notice: "Bienvenido a la batalla!"

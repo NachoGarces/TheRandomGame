@@ -24,18 +24,22 @@ class TournamentsController < ApplicationController
   def edit
   end
 
-  def random(maxs)
-    players_total = []
-    maxs.times do |l|
-      players_total << l + 1
-    end
+  def random_player(maxs)
     teams_randoms = []
-    maxs.times do
-      select_random = players_total.sample
-      teams_randoms << select_random
-      players_total.delete(select_random)
+    maxs.times do |l|
+      teams_randoms << l + 1
     end
+    teams_randoms.shuffle!
     return teams_randoms
+  end
+
+  def random_mods(mods, max)
+    mods_randoms = []
+    mods.times do |l|
+      mods_randoms << l + 1 + max
+    end
+    mods_randoms.shuffle!
+    return mods_randoms
   end
 
   # POST /tournaments
@@ -43,10 +47,15 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(tournament_params)
     @tournament.player_id = current_player.id
-    @tournament.maxteam = 2 if @tournament.typetournament.typetournamentname == 'PvP'
+    @ttn = @tournament.typetournament.typetournamentname
+    @tournament.maxteam = 2 if @ttn == 'PvP'
     @maxs = @tournament.maxplayers * @tournament.maxteam
-    @maxs += 1 if @tournament.typetournament.typetournamentname == 'PvP'
-    @tournament.orderplayers = random(@maxs)
+    @tournament.orderplayers = random_player(@maxs)
+    if @ttn == 'PvP'
+      @tournament.ordermods = random_mods(1, @tournament.orderplayers.max)
+    else
+      @tournament.ordermods = random_mods(@maxs/2, @tournament.orderplayers.max)
+    end
     respond_to do |format|
       if @tournament.save
         format.html { redirect_to @tournament, notice: 'Tu torneo a sido creado con exito!' }
@@ -86,23 +95,25 @@ class TournamentsController < ApplicationController
 
   private
     def winner_pvp
-      @total = @tournament.bet_amounts * (@plc - 1)
+      @total = @tournament.bet_amounts * @maxs
       case tournament_params[:winner]
       when 'Azul'
-        rags_mod(@players_tournaments[@orderplayers.max - 1].player)
-        @orderplayers.delete(@orderplayers.max)
+        @ordermods.size.times do |m|
+          rags_mod(@players_tournaments[@ordermods[m]-1].player)
+        end
         @orderdelete.times do
           @orderplayers.delete(@orderplayers.min)
         end
       when 'Rojo'
-        rags_mod(@players_tournaments[@orderplayers.max - 1].player)
-        @orderplayers.delete(@orderplayers.max)
+        @ordermods.size.times do |m|
+          rags_mod(@players_tournaments[@ordermods[m]-1].player)
+        end
         @orderdelete.times do
           @orderplayers.delete(@orderplayers.max)
         end
       end
       @orderdelete.times do |p|
-        rags_winners(@players_tournaments[@orderplayers[p] - 1].player)
+        rags_winners(@players_tournaments[@orderplayers[p]-1].player)
       end
       tp = tournament_params
       tp["orderplayers"] = @orderplayers
@@ -127,9 +138,12 @@ class TournamentsController < ApplicationController
       @tournament = Tournament.find(params[:id])
       @players_tournaments = PlayersTournament.where(tournament_id: @tournament.id).all
       @orderplayers = @tournament.orderplayers
+      @ordermods = @tournament.ordermods
       @plc = @players_tournaments.size
       @orderdelete = (@plc - 1) / 2
       @maxs = @tournament.maxplayers * @tournament.maxteam
+      @ttn = @tournament.typetournament.typetournamentname
+      @mods = @tournament.ordermods
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

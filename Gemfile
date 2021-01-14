@@ -9,7 +9,7 @@ gem 'faker'
 gem 'cancancan'
 gem 'omniauth-facebook'
 
-gem 'rails_admin', '~> 1.3'
+gem 'rails_admin', '~> 1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
